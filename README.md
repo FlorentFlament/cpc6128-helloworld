@@ -1,9 +1,19 @@
-# Running the code
+# Compiling
+
+```
+docker run --rm -v ${PWD}:/src/ fflament/z88dk make
+```
+
+# Running
+
+Any emulator should do. Here's an example using `mame`:
+
 ```
 mame cpc6128 -skip_gameinfo -natural -flop1 program.dsk
 ```
 
 In the emulator
+
 ```
 memory &11ff
 load "program.cpc",&1200
