@@ -1,0 +1,49 @@
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/FlorentFlament/cpc6128-helloworld.git
+    branch: master
+    tag_filter: '*'
+- name: release
+  type: github-release
+  source:
+    owner: FlorentFlament
+    repository: cpc6128-helloworld
+    access_token: ((github_access_token))
+- name: z88dk-container
+  type: docker-image
+  source:
+    repository: fflament/z88dk
+
+jobs:
+- name: build
+  plan:
+  - aggregate:
+    - get: source-code
+      trigger: true
+    - get: z88dk-container
+  - task: build
+    image: z88dk-container
+    config:
+      platform: linux
+      inputs:
+        - name: source-code
+      outputs:
+        - name: build
+      run:
+        path: /bin/sh
+        args:
+          - "-c"
+          - |
+            cd source-code &&
+            make &&
+            cp program* ../build/ &&
+            git describe > ../build/release_name &&
+            git describe > ../build/release_tag
+  - put: release
+    params:
+      name: build/release_name
+      tag: build/release_tag
+      globs:
+      - build/program*
