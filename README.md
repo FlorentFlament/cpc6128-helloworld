@@ -1,10 +1,12 @@
-# Compiling
+# Amstrad CPC 6128 Hello World
+
+## Compiling
 
 ```
 docker run --rm -v ${PWD}:/src/ fflament/z88dk make
 ```
 
-# Running
+## Running
 
 Any emulator should do. Here's an example using `mame`:
 
@@ -20,5 +22,10 @@ load "program.cpc",&1200
 call &1200
 ```
 
-source: https://github.com/z88dk/z88dk/wiki/Platform---Amstrad-CPC
+## Links
+
+* [z88dk notes about the Amstrad CPC platform][1]
+
+
+[1]: https://github.com/z88dk/z88dk/wiki/Platform---Amstrad-CPC
 
