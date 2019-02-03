@@ -11,14 +11,14 @@ docker run --rm -v ${PWD}:/src/ fflament/z88dk make
 Any emulator should do. Here's an example using `mame`:
 
 ```
-mame cpc6128 -skip_gameinfo -natural -flop1 program.dsk
+mame cpc6128 -skip_gameinfo -natural -flop1 helloc.dsk
 ```
 
 In the emulator
 
 ```
 memory &11ff
-load "program.cpc",&1200
+load "helloc.cpc",&1200
 call &1200
 ```
 
