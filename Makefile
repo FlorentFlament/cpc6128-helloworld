@@ -1,4 +1,4 @@
-CMD=zcc +cpc -lndos -lm -subtype=dsk -create-app
+CMD=zcc +cpc -lndos -subtype=dsk -create-app
 BINS=helloc hellos
 
 all: $(patsubst %, %.dsk, ${BINS})
